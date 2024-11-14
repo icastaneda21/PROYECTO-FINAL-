@@ -1,0 +1,70 @@
+/* src/pages/Home.css */
+
+.home-container {
+    text-align: center;
+    padding: 20px;
+    width: 1500px;
+    height: 800px;
+    background-image: url('/image 5.png');
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .logo-container {
+    margin-bottom: 20px;
+    gap: 20px;
+  }
+  
+  .logo {
+    max-width: 150px; /* Ajusta el tamaño según necesites */
+    height: auto;
+    position: relative;
+    left: -300px;
+    bottom: 70px
+  }
+  
+  .menu-container {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  .menu-buttone {
+    display: block;
+    width: 400px; /* Ajusta el tamaño según necesites */
+    padding: 15px;
+    background-color: #EE6226;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 8px;
+    text-align: center;
+    font-size: 18px;
+    font-weight: bold;
+    margin-top: 20px;
+  }
+  
+  .menu-buttone:hover {
+    background-color: #0056b3;
+  }
+  
+  .menu-{
+    display: block;
+    width: 400px; /* Ajusta el tamaño según necesites */
+    padding: 15px;
+    background-color: #655E5C;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 8px;
+    text-align: center;
+    font-size: 18px;
+    font-weight: bold;
+    margin-top: 20px;
+  }
+
+  .menu-:hover {
+    background-color: #0056b3;
+  }

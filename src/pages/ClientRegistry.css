@@ -1,0 +1,144 @@
+/* src/pages/ClientRegistry.css */
+
+/* Barra de navegación */
+.navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #ff6600;
+    padding: 10px 20px;
+    color: #fff;
+  }
+  
+  .navbar-left .info-button {
+    background: none;
+    border: none;
+    color: #fff;
+    font-weight: bold;
+    font-size: 16px;
+    cursor: pointer;
+    margin-left: 1000px;
+  }
+  
+  .navbar-right {
+    display: flex;
+    align-items: center;
+  }
+  
+  .dots-button, .close-button, .logout-button {
+    background: none;
+    border: none;
+    color: #666;
+    font-size: 16px;
+    cursor: pointer;
+    margin-left: 10px;
+  }
+  
+  .logout-button {
+    color: #fff;
+    font-size: 16px;
+    font-weight: bold;
+  }
+  
+  /* Estilos generales de la página */
+  .client-page {
+    font-family: Arial, sans-serif;
+    background-color: #f5f5f5;
+    padding: 0;
+  }
+  
+  .client-registration {
+    max-width: 700px;
+    margin: 40px auto;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  h2 {
+    font-size: 20px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 20px;
+  }
+  
+  .form {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    padding: 10px 0;
+  }
+  
+  .form label {
+    font-weight: bold;
+    font-size: 14px;
+    color: #555;
+    width: 100%;
+    display: block;
+  }
+  
+  .form input {
+    width: 100%;
+    padding: 10px;
+    font-size: 14px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    margin-top: 5px;
+  }
+  
+  .form input:focus {
+    border-color: #ff6600;
+    outline: none;
+  }
+  
+  .half-width {
+    width: 48%;
+  }
+  
+  .add-button, .menu-button {
+    background-color: #333;
+    color: #fff;
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 20px;
+    width: 100%;
+  }
+  
+  .add-button:hover, .menu-button:hover {
+    background-color: #555;
+  }
+  
+  .client-table {
+    width: 100%;
+    margin-top: 20px;
+    border-collapse: collapse;
+  }
+  
+  .client-table th, .client-table td {
+    padding: 10px;
+    text-align: left;
+    border: 1px solid #ddd;
+  }
+  
+  .client-table th {
+    background-color: #f2f2f2;
+    font-weight: bold;
+  }
+  
+  .client-table td {
+    color: #555;
+  }
+  
+  .client-table tr:hover {
+    background-color: #f9f9f9;
+  }
+  
+  .menu-button {
+    text-align: center;
+    margin-top: 30px;
+  }
+  
