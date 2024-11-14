@@ -5,21 +5,26 @@ import './ProductRegistry.css';
 function ProductRegistry() {
   const navigate = useNavigate();
   const [products, setProducts] = useState([
-    { id: 1, code: '702465', name: 'Moductor', quantity: 100, price: 10.0 },
-    { id: 2, code: '482979', name: 'Minimoductor', quantity: 95, price: 7.5 },
-    { id: 3, code: '455755', name: 'Cables planos', quantity: 72, price: 5.5 },
-    { id: 4, code: '759269', name: 'Iman de izaje', quantity: 70, price: 10.5 },
-    { id: 5, code: '886445', name: 'Trolley Manual', quantity: 12, price: 2.5 },
-    { id: 6, code: '710832', name: 'Diferencial Manual', quantity: 29, price: 5.0 },
-    { id: 7, code: '971921', name: 'Cadenas', quantity: 77, price: 4.5 },
-    { id: 8, code: '346133', name: 'Cable de elevacion', quantity: 84, price: 9.0 },
-    { id: 9, code: '769013', name: 'Polipastos a Cadena', quantity: 37, price: 13.5 },
-    { id: 10, code: '568399', name: 'Polipastos a Cable', quantity: 152, price: 15.0 },
+    { id: 1, code: '702465', name: 'Moductor', quantity: 100, price: 10000 },
+    { id: 2, code: '482979', name: 'Minimoductor', quantity: 95, price: 7500 },
+    { id: 3, code: '455755', name: 'Cables planos', quantity: 72, price: 5500 },
+    { id: 4, code: '759269', name: 'Imán de izaje', quantity: 70, price: 10500 },
+    { id: 5, code: '886445', name: 'Trolley Manual', quantity: 12, price: 2500 },
+    { id: 6, code: '710832', name: 'Diferencial Manual', quantity: 29, price: 5000 },
+    { id: 7, code: '971921', name: 'Cadenas', quantity: 77, price: 4500 },
+    { id: 8, code: '346133', name: 'Cable de elevación', quantity: 84, price: 9000 },
+    { id: 9, code: '769013', name: 'Polipastos a Cadena', quantity: 37, price: 13500 },
+    { id: 10, code: '568399', name: 'Polipastos a Cable', quantity: 152, price: 15000 },
   ]);
+  
   const [searchTerm, setSearchTerm] = useState('');
   const [filteredProducts, setFilteredProducts] = useState(products);
   const [showTotal, setShowTotal] = useState(false);
   const [totalPrice, setTotalPrice] = useState(0);
+
+  const [showModal, setShowModal] = useState(false);
+  const [modalType, setModalType] = useState(''); // 'add' o 'edit'
+  const [currentProduct, setCurrentProduct] = useState({ id: '', code: '', name: '', quantity: 0, price: 0 });
 
   const handleSearch = () => {
     const filtered = products.filter(
@@ -49,17 +54,37 @@ function ProductRegistry() {
   };
 
   const handleAddProduct = () => {
-    // Lógica para agregar un nuevo producto (usando un formulario en un modal, por ejemplo)
+    setModalType('add');
+    setCurrentProduct({ id: '', code: '', name: '', quantity: 0, price: 0 });
+    setShowModal(true);
   };
 
   const handleEditProduct = (id) => {
-    // Lógica para editar un producto existente
+    const productToEdit = products.find(product => product.id === id);
+    setModalType('edit');
+    setCurrentProduct(productToEdit);
+    setShowModal(true);
   };
 
   const handleDeleteProduct = (id) => {
     const updatedProducts = products.filter(product => product.id !== id);
     setProducts(updatedProducts);
     setFilteredProducts(updatedProducts);
+  };
+
+  const handleSaveProduct = () => {
+    if (modalType === 'add') {
+      const newProduct = { ...currentProduct, id: products.length + 1 };
+      setProducts([...products, newProduct]);
+      setFilteredProducts([...products, newProduct]);
+    } else if (modalType === 'edit') {
+      const updatedProducts = products.map(product =>
+        product.id === currentProduct.id ? currentProduct : product
+      );
+      setProducts(updatedProducts);
+      setFilteredProducts(updatedProducts);
+    }
+    setShowModal(false);
   };
 
   const handleLogout = () => {
@@ -107,7 +132,7 @@ function ProductRegistry() {
                 <td>{product.code}</td>
                 <td>{product.name}</td>
                 <td>{product.quantity}</td>
-                <td>{product.price}</td>
+                <td>${product.price.toLocaleString('es-CO')}</td>
                 <td>
                   <button onClick={() => handleEditProduct(product.id)}>Editar</button>
                   <button onClick={() => handleDeleteProduct(product.id)}>Eliminar</button>
@@ -121,8 +146,42 @@ function ProductRegistry() {
           <div className="modal">
             <div className="modal-content">
               <h2>Total Precio</h2>
-              <p>El total del precio es: ${totalPrice.toFixed(2)}</p>
+              <p>El total del precio es: ${totalPrice.toLocaleString('es-CO')}</p>
               <button onClick={handleCloseTotal}>Cerrar</button>
+            </div>
+          </div>
+        )}
+
+        {showModal && (
+          <div className="modal">
+            <div className="modal-content">
+              <h2>{modalType === 'add' ? 'Agregar Producto' : 'Editar Producto'}</h2>
+              <label>Código:</label>
+              <input
+                type="text"
+                value={currentProduct.code}
+                onChange={(e) => setCurrentProduct({ ...currentProduct, code: e.target.value })}
+              />
+              <label>Producto:</label>
+              <input
+                type="text"
+                value={currentProduct.name}
+                onChange={(e) => setCurrentProduct({ ...currentProduct, name: e.target.value })}
+              />
+              <label>Cantidad:</label>
+              <input
+                type="number"
+                value={currentProduct.quantity}
+                onChange={(e) => setCurrentProduct({ ...currentProduct, quantity: parseInt(e.target.value) })}
+              />
+              <label>Valor c/u:</label>
+              <input
+                type="number"
+                value={currentProduct.price}
+                onChange={(e) => setCurrentProduct({ ...currentProduct, price: parseFloat(e.target.value) })}
+              />
+              <button onClick={handleSaveProduct}>Guardar</button>
+              <button onClick={() => setShowModal(false)}>Cancelar</button>
             </div>
           </div>
         )}

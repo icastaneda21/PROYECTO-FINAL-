@@ -12,8 +12,11 @@
   "dependencies": {
     "@react-google-maps/api": "^2.20.3",
     "axios": "^1.7.7",
+    "chart.js": "^4.4.6",
     "crud-stock2": "file:",
     "express": "^4.21.1",
+    "jspdf": "^2.5.2",
+    "jspdf-autotable": "^3.8.4",
     "leaflet": "^1.9.4",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
